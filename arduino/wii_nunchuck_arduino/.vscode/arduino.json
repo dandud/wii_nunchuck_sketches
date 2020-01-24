@@ -1,0 +1,5 @@
+{
+    "board": "arduino:avr:uno",
+    "sketch": "wii_nunchuck_arduino.ino",
+    "port": "COM7"
+}
