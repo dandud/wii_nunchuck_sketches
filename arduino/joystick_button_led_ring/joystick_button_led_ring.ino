@@ -5,7 +5,14 @@
 
 #define NUM_LEDS 12
 #define DATA_PIN 6
-#define BRIGHTNESS  100 
+#define BRIGHTNESS  50
+
+//define colors for use
+#define BLACK 0
+#define WHITE 1
+#define RED 2
+#define GREEN 3
+#define BLUE 4
 
 CRGBW leds[NUM_LEDS];
 CRGB *ledsRGB = (CRGB *) &leds[0];
@@ -33,78 +40,50 @@ void setup() {
 
     //Test all leds 
     //Red
-    for (size_t i = 0; i < 12; i++)
+
+    for (size_t i = 0; i < 59; i++)
     {
-      leds[i] = CRGB::Red;
-      FastLED.show();
-      delay(100);
-    }
-    
-    //Blue
-    for (size_t i = 0; i < 12; i++)
-    {
-      leds[i] = CRGB::Blue;
-      FastLED.show();
-      delay(100);
+      for (size_t j = 0; j < 4; j++)
+      {
+        stripsolidcolor(j);
+      }
     }
 
-    //Green
-    for (size_t i = 0; i < 12; i++)
-    {
-      leds[i] = CRGB::Green;
-      FastLED.show();
-      delay(100);
-    }
-
-    //White
-    for (size_t i = 0; i < 12; i++)
-    {
-      leds[i] = CRGB::White;
-      FastLED.show();
-      delay(100);
-    }
-    
-    //Black
-    for (size_t i = 0; i < 12; i++)
-    {
-      leds[i] = CRGB::Black;
-      FastLED.show();
-      delay(100);
-    }
-
-    //White
-    for (size_t i = 0; i < 12; i++)
-    {
-      leds[i] = CRGB::White;
-      FastLED.show();
-    }
-
+    stripsolidcolor(RED);
+    delay(100);
+    stripsolidcolor(GREEN);
+    delay(100);
+    stripsolidcolor(BLUE);
+    delay(100);
+    stripsolidcolor(WHITE);
+    delay(100);
+    stripsolidcolor(RED);
+    delay(100);
+    stripsolidcolor(GREEN);
+    delay(100);
+    stripsolidcolor(BLUE);
+    delay(100);
+    stripsolidcolor(WHITE);
     delay(100);
 
-    //Black
-    for (size_t i = 0; i < 12; i++)
-    {
-      leds[i] = CRGB::Black;
-      FastLED.show();
-    }    
-
+    stripwipecolor(RED);
     delay(100);
-    
-    //White
-    for (size_t i = 0; i < 12; i++)
-    {
-      leds[i] = CRGB::White;
-      FastLED.show();
-    }
-
+    stripwipecolor(GREEN);
+    delay(100);
+    stripwipecolor(BLUE);
+    delay(100);
+    stripwipecolor(WHITE);
+    delay(100);
+    stripwipecolor(RED);
+    delay(100);
+    stripwipecolor(GREEN);
+    delay(100);
+    stripwipecolor(BLUE);
+    delay(100);
+    stripwipecolor(WHITE);
     delay(100);
 
-    //Black
-    for (size_t i = 0; i < 12; i++)
-    {
-      leds[i] = CRGB::Black;
-      FastLED.show();
-    }    
+
 }
 
 void loop() {
@@ -188,17 +167,23 @@ void loop() {
         }
         FastLED.show();
       }  
-
-
-      // for (size_t i = 0; i <= angle_leds; i++)
-      // {
-      //   leds[angle_leds] = CRGB::Red;
-      //   FastLED.show();
-      // }
-
-    FastLED.show();
-
     }
-    
-    
 } 
+
+void stripsolidcolor(int color){
+    for (size_t i = 0; i < NUM_LEDS; i++)
+    {
+      leds[i] = colors[color];
+      FastLED.show();
+    }
+}
+
+void stripwipecolor(int color){
+    for (size_t i = 0; i < NUM_LEDS; i++)
+    {
+      leds[i] = colors[color];
+      FastLED.show();
+
+      delay(100);
+    }
+}
